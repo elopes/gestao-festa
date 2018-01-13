@@ -5,26 +5,38 @@ import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-//import com.enlopes.festa.model.Convidado;
+import com.enlopes.festa.model.Convidado;
 import com.enlopes.festa.repository.Convidados;
 
 /*vamos anotar a classe com @Controller, para
 dizer que ela é um componente Spring e que é um controller.*/
 @Controller
+@RequestMapping("/convidados") //As anotações @GetMapping e @PostMapping irão começar com /convidados.
 public class ConvidadosController {
 	
 	@Autowired
 	private Convidados convidados;
 	
-	@GetMapping("/convidados")
+	@GetMapping 
 	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("ListaConvidados");
-		
-		modelAndView.addObject("convidados", convidados.findAll());
-		//modelAndView.addObject("convidado", new Convidado());
+	ModelAndView modelAndView = new ModelAndView("ListaConvidados");
+				
+	modelAndView.addObject("convidados", convidados.findAll());
+	
+	modelAndView.addObject("convidado", new Convidado());
 		
 		return modelAndView;
+	}
+	
+	@PostMapping
+	public String salvar(Convidado convidado) {
+		
+		this.convidados.save(convidado);
+		return "redirect:/convidados";
+		
 	}
 	
 	/*o método listar() é chamado quando acessarmos no browser

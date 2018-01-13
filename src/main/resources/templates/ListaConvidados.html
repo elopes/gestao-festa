@@ -8,15 +8,29 @@
 
 <title>Lista de Convidados</title>
 
-<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
 
-<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>	
-<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
 
 </head>
 
 <body>
+
+	<form class="form-inline" method="POST" th:object="${convidado}"
+		th:action="@{/convidados}" style="margin: 20px 0">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Nome"
+				th:field="*{nome}" /> <input type="text" class="form-control"
+				placeholder="Acompanhantes" th:field="*{quantidadeAcompanhantes}" />
+			<button type="submit" class="btn btn-primary">Adicionar</button>
+		</div>
+	</form>
 
 	<div class="panel panel-default" style="margin: 10px">
 		<div class="panel-heading">
