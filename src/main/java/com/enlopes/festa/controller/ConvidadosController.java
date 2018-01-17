@@ -14,13 +14,12 @@ import com.enlopes.festa.repository.Convidados;
 /*vamos anotar a classe com @Controller, para
 dizer que ela é um componente Spring e que é um controller.*/
 @Controller
-@RequestMapping("/convidados") //As anotações @GetMapping e @PostMapping irão começar com /convidados.
 public class ConvidadosController {
 	
 	@Autowired
 	private Convidados convidados;
 	
-	@GetMapping 
+	@GetMapping("/convidados")
 	public ModelAndView listar() {
 	ModelAndView modelAndView = new ModelAndView("ListaConvidados");
 				
@@ -31,7 +30,7 @@ public class ConvidadosController {
 		return modelAndView;
 	}
 	
-	@PostMapping
+	@PostMapping("/convidados")
 	public String salvar(Convidado convidado) {
 		
 		this.convidados.save(convidado);
